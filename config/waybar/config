@@ -1,0 +1,173 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 26,
+
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+
+  "modules-center": [],
+
+  "modules-right": [
+    "bluetooth",
+    "network",
+    "tray",
+    "custom/screenshot",
+    "custom/clipboard",
+    "idle_inhibitor",
+    "inhibitor",
+    "custom/tuned",
+    "cpu",
+    "memory",
+    "backlight",
+    "pulseaudio",
+    "battery",
+    "clock"
+  ],
+
+  "sway/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "disable-scroll": true
+  },
+
+  "sway/mode": {
+    "format": "<span foreground='#f38ba8'>{}</span>"
+  },
+
+  "cpu": {
+    "interval": 3,
+    "format": "󰻠 {usage}%",
+    "tooltip": true,
+    "on-click": "alacritty -e btop"
+  },
+
+  "memory": {
+    "interval": 3,
+    "format": "󰍛 {percentage}%",
+    "tooltip": true,
+    "on-click": "alacritty -e btop"
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-on": "󰂯",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-no-controller": "󰂲",
+    "format-connected": "󰂱 {device_alias}",
+    "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+    "tooltip": true,
+    "tooltip-format": "Bluetooth on\nNo devices connected",
+    "tooltip-format-connected": "Bluetooth connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} — {device_battery_percentage}%",
+    "on-click": "blueman-manager"
+  },
+
+  "network": {
+    "format-wifi": "󰤨 {essid} · {ipaddr}",
+    "format-ethernet": "󰈀 {ipaddr}",
+    "format-disconnected": "󰤭 Offline",
+    "format-disabled": "󰤮 Wi‑Fi off",
+    "tooltip": true,
+    "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nIP: {ipaddr}\nGateway: {gwaddr}",
+    "tooltip-format-ethernet": "Ethernet\nIP: {ipaddr}\nGateway: {gwaddr}",
+    "tooltip-format-disconnected": "Wi‑Fi disconnected",
+    "on-click": "nm-connection-editor"
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 6,
+    "show-passive-items": false
+  },
+
+  "custom/screenshot": {
+    "format": "󰄀",
+    "tooltip": true,
+    "tooltip-format": "Take a screenshot",
+    "on-click": "$HOME/.config/waybar/scripts/screenshot.sh"
+  },
+
+  "custom/clipboard": {
+    "format": "󰅍",
+    "tooltip": true,
+    "tooltip-format": "Clipboard history",
+    "on-click": "$HOME/.config/waybar/scripts/clipboard.sh"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰅶",
+      "deactivated": "󰾪"
+    },
+    "start-activated": true,
+    "tooltip": true,
+    "tooltip-format-activated": "No automatic lock or display off",
+    "tooltip-format-deactivated": "Normal idle behavior"
+  },
+
+  "inhibitor": {
+    "what": "sleep",
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "<span strikethrough='true'>󰖔</span>",
+      "deactivated": "󰖔"
+    },
+    "tooltip": true,
+    "tooltip-format-activated": "Suspend disabled",
+    "tooltip-format-deactivated": "Suspend enabled"
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "tooltip": false,
+    "on-scroll-up": "brightnessctl --class=backlight set +5%",
+    "on-scroll-down": "brightnessctl --class=backlight --min-value=1 set 5%-"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "tooltip": true,
+    "tooltip-format": "Volume: {volume}%\n{desc}",
+    "on-click": "pavucontrol",
+    "scroll-step": 5
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+    "tooltip": true,
+    "tooltip-format": "Battery: {capacity}%\n{timeTo}"
+  },
+
+  "clock": {
+    "format": "{:%d/%m/%Y %H:%M}",
+    "tooltip": true,
+    "tooltip-format": "<big>{:%A %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "custom/tuned": {
+    "exec": "~/.config/waybar/scripts/tuned-label.sh",
+    "interval": 5,
+    "tooltip": true,
+    "tooltip-format": "Clic: powersave → balanced → performance",
+    "on-click": "$HOME/.config/waybar/scripts/tuned-cycle.sh"
+  }
+}

@@ -1,0 +1,197 @@
+### Variables
+
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# Preferred terminal emulator
+set $term alacritty
+
+# Preferred application launcher
+set $menu j4-dmenu-desktop --dmenu='BEMENU_BACKEND=wayland bemenu -m -1 -i'
+
+### Output configuration
+
+# Default wallpaper
+output * bg ./astronaut.jpg fill
+
+# Optional: internal display scaling used on my MacBook Air M1.
+# Check your output name with: swaymsg -t get_outputs
+# output eDP-1 scale 1.5
+# output eDP-1 scale_filter smart
+
+### Idle configuration
+
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c 000000'
+
+# Clipboard manager
+exec --no-startup-id wl-paste --watch cliphist store
+
+### Input configuration
+
+# Touchpad preferences — adjust to taste.
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll disabled
+    middle_emulation enabled
+}
+
+# Optional: Italian keyboard layout.
+# Uncomment if you use an Italian keyboard.
+# input type:keyboard {
+#     xkb_layout "it"
+#     xkb_model "pc105"
+# }
+
+### Connections
+
+exec --no-startup-id nm-applet --indicator
+exec --no-startup-id blueman-applet
+
+### Key bindings
+
+# Applications and session
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+space exec $menu
+bindsym $mod+c exec ~/.config/waybar/scripts/clipboard.sh
+bindsym $mod+p exec ~/.config/waybar/scripts/screenshot.sh
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r reload
+
+bindsym $mod+Shift+e exec swaynag -t warning \
+    -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
+    -B 'Yes, exit sway' 'swaymsg exit'
+
+bindsym $mod+Shift+s exec swaynag -t warning \
+    -m 'Do you want to suspend the system?' \
+    -B 'Yes, suspend' 'systemctl suspend'
+
+bindsym $mod+Shift+b exec swaynag -t warning \
+    -m 'Do you want to reboot the system?' \
+    -B 'Yes, reboot' 'systemctl reboot'
+
+bindsym $mod+Shift+p exec swaynag -t warning \
+    -m 'Do you want to power off the system?' \
+    -B 'Yes, power off' 'systemctl poweroff'
+
+# Optional: replace the command with your preferred browser.
+bindsym $mod+Shift+Return exec google-chrome-stable
+
+# Floating modifier: hold Mod and use the left mouse button to move a window,
+# or the right mouse button to resize it.
+floating_modifier $mod normal
+
+### Navigation and workspaces
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+a focus parent
+
+### Layout and window management
+
+# Horizontal and vertical splits
+bindsym $mod+h splith
+bindsym $mod+v splitv
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+f floating toggle
+bindsym $mod+Shift+space focus mode_toggle
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+### Window appearance
+
+default_border normal 3
+default_floating_border normal 3
+hide_edge_borders smart
+
+gaps inner 6
+gaps outer 0
+
+client.focused          #9f1d1d #18181b #e4e4e7 #ef4444 #9f1d1d
+client.focused_inactive #3f3f46 #18181b #a1a1aa #3f3f46 #3f3f46
+client.unfocused        #27272a #18181b #a1a1aa #27272a #27272a
+client.urgent           #dc2626 #18181b #fee2e2 #dc2626 #dc2626
+
+### Resize mode
+
+mode "resize" {
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+### Hardware keys
+
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+### Status bar
+
+bar {
+    swaybar_command waybar
+}
+
+### Clipboard window
+
+for_window [app_id="waybar-clipboard"] {
+    floating enable
+    border pixel 2
+    resize set width 700 px height 500 px
+    move position center
+}
+
+include /etc/sway/config.d/*

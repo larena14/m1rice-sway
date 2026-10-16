@@ -1,0 +1,26 @@
+[general]
+import = [ "~/.config/alacritty/theme.toml" ]
+
+[terminal.shell]
+program = "/bin/zsh"
+args = [ "-l", "-c", "tmux" ]
+
+[window]
+opacity = 1
+dynamic_padding = true
+title = "Alacritty"
+
+[window.padding]
+x = 3
+y = 3
+
+[window.class]
+instance = "Alacritty"
+general = "Alacritty"
+
+[scrolling]
+history = 10_000
+
+[font]
+size = 12
+

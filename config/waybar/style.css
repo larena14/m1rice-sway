@@ -1,0 +1,165 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrains Mono", "Symbols Nerd Font", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(24, 24, 27, 0.92);
+    color: #cdd6f4;
+}
+
+#workspaces {
+    margin: 3px 5px;
+    background: rgba(39, 39, 42, 0.85);
+}
+
+#workspaces button {
+    padding: 0 6px;
+    margin: 0px 0px;
+    color: #d4d4d8;
+    background: transparent;
+    transition: none;
+}
+
+#workspaces button:hover {
+    color: #f4f4f5;
+    background: rgba(82, 82, 91, 0.35);
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.focused {
+    color: #fecaca;
+    background: rgba(127, 29, 29, 0.75);
+}
+
+#workspaces button.urgent {
+    color: #fee2e2;
+    background: rgba(220, 38, 38, 0.9);
+}
+
+#sway-mode {
+    margin: 3px 0;
+    padding: 0 6px;
+    color: #f38ba8;
+}
+
+#cpu,
+#memory,
+#bluetooth,
+#network,
+#tray,
+#custom-screenshot,
+#custom-clipboard,
+#idle_inhibitor,
+#inhibitor,
+#backlight,
+#pulseaudio,
+#battery,
+#custom-tuned,
+#clock {
+    padding: 0 7px;
+    margin: 3px 2px;
+    background: rgba(30, 30, 46, 0.75);
+    border-radius: 9px;
+    transition: all 0.15s ease;
+}
+
+#cpu:hover,
+#memory:hover,
+#bluetooth:hover,
+#network:hover,
+#tray:hover,
+#custom-screenshot:hover,
+#custom-clipboard:hover,
+#idle_inhibitor:hover,
+#inhibitor:hover,
+#backlight:hover,
+#pulseaudio:hover,
+#battery:hover,
+#custom-tuned:hover,
+#clock:hover {
+    background: rgba(49, 50, 68, 0.95);
+}
+
+#cpu {
+    color: #89b4fa;
+}
+
+#memory {
+    color: #cba6f7;
+}
+
+#bluetooth {
+    color: #89b4fa;
+}
+
+#bluetooth.off,
+#bluetooth.disabled {
+    color: #6c7086;
+}
+
+#network {
+    color: #89dceb;
+}
+
+#network.disconnected {
+    color: #f38ba8;
+}
+
+#custom-screenshot {
+    color: #f5e0dc;
+}
+
+#custom-clipboard {
+    color: #cba6f7;
+}
+
+#idle_inhibitor {
+    color: #a6adc8;
+}
+
+#idle_inhibitor.activated {
+    color: #a6e3a1;
+}
+
+#inhibitor {
+    color: #a6e3a1;
+}
+
+#inhibitor.activated {
+    color: #f38ba8;
+}
+
+#backlight {
+    color: #f9e2af;
+}
+
+#pulseaudio {
+    color: #94e2d5;
+}
+
+#pulseaudio.muted {
+    color: #6c7086;
+}
+
+#battery {
+    color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+    color: #f9e2af;
+}
+
+#battery.critical:not(.charging) {
+    color: #f38ba8;
+}
+
+#clock {
+    color: #f5e0dc;
+    font-weight: 600;
+}
