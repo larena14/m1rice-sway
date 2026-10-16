@@ -292,36 +292,49 @@ The power scripts parse the English `Current active profile:` output from `tuned
 | `assets/power-balanced.png` | TuneD balanced indicator |
 | `assets/power-performance.png` | TuneD throughput-performance indicator |
 
+## Useful guides
+
+The [`guides/`](guides/) directory contains optional guides for additional system configuration:
+
+- [Btrfs snapshots with Snapper](guides/SNAPSHOT_BTRFS.md)
+- [ZRAM configuration](guides/ZRAM.md)
+
+These guides are separate from the desktop setup instructions.
+
 ## Repository layout
 
 ```text
 .
-├── LICENSE
-├── README.md
-├── assets/
+├── assets
 │   ├── clipboard.png
 │   ├── desktop.png
 │   ├── power-balanced.png
 │   ├── power-performance.png
 │   ├── power-powersave.png
+│   ├── screenshot.png
 │   └── waybar.png
-└── config/
-    ├── alacritty/
-    │   ├── alacritty.toml
-    │   └── theme.toml
-    ├── sway/
-    │   ├── astronaut.jpg
-    │   ├── config
-    │   └── CREDITS.md
-    └── waybar/
-        ├── config
-        ├── scripts/
-        │   ├── clipboard-menu.sh
-        │   ├── clipboard.sh
-        │   ├── screenshot.sh
-        │   ├── tuned-cycle.sh
-        │   └── tuned-label.sh
-        └── style.css
+├── config
+│   ├── alacritty
+│   │   ├── alacritty.toml
+│   │   └── theme.toml
+│   ├── sway
+│   │   ├── astronaut.jpg
+│   │   ├── config
+│   │   └── CREDITS.md
+│   └── waybar
+│       ├── config
+│       ├── scripts
+│       │   ├── clipboard-menu.sh
+│       │   ├── clipboard.sh
+│       │   ├── screenshot.sh
+│       │   ├── tuned-cycle.sh
+│       │   └── tuned-label.sh
+│       └── style.css
+├── guides
+│   ├── SNAPSHOT_BTRFS.md
+│   └── ZRAM.md
+├── LICENSE
+└── README.md
 ```
 
 ## Optional: Italian keyboard layout
